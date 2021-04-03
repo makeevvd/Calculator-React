@@ -1,6 +1,6 @@
 {
   "name": "calculator-react",
-  "homepage": "http://makeevvd.github.io/calculator-react",
+  "homepage": "http://makeevvd.github.io/Calculator-React",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,7 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build -r https://github.com/makeevvd/Calculator-React"
   },
   "eslintConfig": {
     "extends": [
