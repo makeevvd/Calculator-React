@@ -9,12 +9,9 @@ export const OutputScreen = () => {
     previousOperand,
     setPreviousOperand,
     currentOperand,
-    setCurrentOperand,
     currentOperation,
     setCurrentOperation,
-    resetFlag,
     setResetFlag,
-    operations
   } = useCalculator();
 
   useEffect(() => {
@@ -28,12 +25,11 @@ export const OutputScreen = () => {
   return (
     <Output role="output">
       <PreviousOperand>
-        {/*{previousOperand ? Number(previousOperand).toFixed(3) : ''}*/}
         {previousOperand ? numberToFixed(+previousOperand, 5).toString() : ''}
         {currentOperation ? currentOperation : ''}
       </PreviousOperand>
       <CurrentOperand>
-        {currentOperand ? numberToFixed(+currentOperand, 5).toString() : ''}
+        {currentOperand ? currentOperand : ''}
       </CurrentOperand>
     </Output>
   )
@@ -57,6 +53,6 @@ const PreviousOperand = styled.div`
 `
 
 const CurrentOperand = styled.div`
-  color: white;
+  color: white; 
   font-size: 2.5rem;
 `

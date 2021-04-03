@@ -1,5 +1,5 @@
 import React from "react";
-import {OperationsParams, useCalculator} from "../../context";
+import {operations, OperationsParams, useCalculator} from "../../context";
 import {Button} from "../../shared/ui/Button";
 import {numberToFixed} from "../../shared/lib/numberToFixed";
 
@@ -12,9 +12,6 @@ export const OperationButton = ({operation}: {operation: OperationsParams}) => {
     setCurrentOperand,
     currentOperation,
     setCurrentOperation,
-    resetFlag,
-    setResetFlag,
-    operations
   } = useCalculator();
 
   const onOperationClickHandler = () => {

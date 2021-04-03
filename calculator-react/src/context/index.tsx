@@ -5,7 +5,7 @@ type OperationFn = (left: number, right: number) => number
 const createOperations = <OperationsType extends Record<string, OperationFn>>(
   opts: OperationsType,
 ) => opts
-const operations = createOperations({
+export const operations = createOperations({
   '+': (left, right) => left + right,
   '-': (left, right) => left - right,
   '*': (left, right) => left * right,
@@ -24,7 +24,6 @@ type CalculatorContextType = {
   setCurrentOperation: Dispatch<SetStateAction<keyof typeof operations | undefined>>
   resetFlag: boolean
   setResetFlag: Dispatch<SetStateAction<boolean>>
-  operations: typeof operations
 }
 
 const CalculatorContext = React.createContext<CalculatorContextType | undefined>(undefined)
@@ -46,7 +45,6 @@ const AppProvider:React.FC = ({children}) => {
     setCurrentOperation,
     resetFlag,
     setResetFlag,
-    operations,
   }), [
     previousOperand,
     setPreviousOperand,

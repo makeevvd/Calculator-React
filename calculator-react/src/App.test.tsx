@@ -163,3 +163,44 @@ test('2 ^ 4 = 16', () => {
 
 })
 
+test('decimals + negative decimals work', () => {
+  render(<App />);
+  userEvent.click(screen.getByRole('button', {
+    name: /\./i
+  }));
+  userEvent.click(screen.getByRole('button', {
+    name: /2/i
+  }));
+  userEvent.click(screen.getByRole('button', {
+    name: /\+/i
+  }));
+  userEvent.click(screen.getByRole('button', {
+    name: /1/i
+  }));
+  userEvent.click(screen.getByRole('button', {
+    name: /=/i
+  }));
+
+  expect(screen.getByRole('output')).toHaveTextContent('1.2')
+  userEvent.click(screen.getByRole('button', {
+    name: /±/i
+  }));
+  expect(screen.getByRole('output')).toHaveTextContent('-1.2')
+  userEvent.click(screen.getByRole('button', {
+    name: /-/i
+  }));
+  userEvent.click(screen.getByRole('button', {
+    name: /8/i
+  }));
+  userEvent.click(screen.getByRole('button', {
+    name: /\./i
+  }));
+  userEvent.click(screen.getByRole('button', {
+    name: /8/i
+  }));
+  userEvent.click(screen.getByRole('button', {
+    name: /=/i
+  }));
+  expect(screen.getByRole('output')).toHaveTextContent('-10')
+})
+

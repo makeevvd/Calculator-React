@@ -7,7 +7,6 @@ export const NumberButton = ({digit}: {digit: number}) => {
 
   const onNumberClickHandler = () => {
     setCurrentOperand((num) => {
-
         return (num !== undefined && num !== '0' && !resetFlag) ? `${num}${digit}` : digit.toString()
       }
     )

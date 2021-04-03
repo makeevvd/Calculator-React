@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {useCalculator} from "../../context";
+import {operations, useCalculator} from "../../context";
 import {Button} from "../../shared/ui/Button";
 import {OperationButton} from "./OperationButton";
 import {NumberButton} from "./NumberButton";
@@ -15,9 +15,7 @@ const ButtonsGroup = () => {
     setCurrentOperand,
     currentOperation,
     setCurrentOperation,
-    resetFlag,
     setResetFlag,
-    operations
   } = useCalculator();
 
   const onEqualClick = () => {
@@ -52,16 +50,24 @@ const ButtonsGroup = () => {
     })
   }
 
-  const onPlusMinusClickHandler = () => {
+  const onPlusMinusClick = () => {
     setCurrentOperand((prev) => {
       if (prev === undefined) return;
       return (-prev).toString()
     })
   }
 
+  const onPointClick = () => {
+    if (currentOperand?.includes('.')) return
+    setCurrentOperand((prev) => {
+      if (prev === undefined) return '0.'
+      return `${prev}.`
+    })
+  }
+
   return (
     <>
-      <Button onClick={onPlusMinusClickHandler}>±</Button>
+      <Button onClick={onPlusMinusClick}>±</Button>
       <Button onClick={onDeleteClick}>DEL</Button>
       <OperationButton operation={"/"} />
       <Button onClick={onRootClick}>√</Button>
@@ -77,7 +83,7 @@ const ButtonsGroup = () => {
       <NumberButton digit={8} />
       <NumberButton digit={9} />
       <OperationButton operation={"-"} />
-      <Button data-number>.</Button>
+      <Button onClick={onPointClick}>.</Button>
       <NumberButton digit={0} />
       <OperationButton operation={"^"} />
       <Button onClick={onEqualClick}>=</Button>
