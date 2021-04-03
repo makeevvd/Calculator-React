@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import {useCalculator} from "../../context";
+import {numberToFixed} from "../../shared/lib/numberToFixed";
 
 export const OutputScreen = () => {
 
@@ -16,15 +17,23 @@ export const OutputScreen = () => {
     operations
   } = useCalculator();
 
+  useEffect(() => {
+    if (currentOperand && isNaN(+currentOperand)) {
+      setResetFlag(true);
+      setPreviousOperand(undefined);
+      setCurrentOperation(undefined);
+    }
+  }, [previousOperand, currentOperand])
+
   return (
-    <Output>
+    <Output role="output">
       <PreviousOperand>
         {/*{previousOperand ? Number(previousOperand).toFixed(3) : ''}*/}
-        {previousOperand ? +parseFloat((+previousOperand).toFixed(3)) : ''}
+        {previousOperand ? numberToFixed(+previousOperand, 5).toString() : ''}
         {currentOperation ? currentOperation : ''}
       </PreviousOperand>
       <CurrentOperand>
-        {currentOperand ? +parseFloat((+currentOperand).toFixed(7)) : ''}
+        {currentOperand ? numberToFixed(+currentOperand, 5).toString() : ''}
       </CurrentOperand>
     </Output>
   )

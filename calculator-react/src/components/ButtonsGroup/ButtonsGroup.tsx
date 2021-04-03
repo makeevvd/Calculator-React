@@ -4,6 +4,7 @@ import {useCalculator} from "../../context";
 import {Button} from "../../shared/ui/Button";
 import {OperationButton} from "./OperationButton";
 import {NumberButton} from "./NumberButton";
+import {numberToFixed} from "../../shared/lib/numberToFixed";
 
 const ButtonsGroup = () => {
 
@@ -21,9 +22,12 @@ const ButtonsGroup = () => {
 
   const onEqualClick = () => {
     if (!currentOperation || previousOperand === undefined || currentOperand === undefined) return
-    setCurrentOperand(operations[currentOperation](+previousOperand, +currentOperand).toString())
+    const newValue = operations[currentOperation](+previousOperand, +currentOperand);
+    const newValueToFixed = numberToFixed(newValue, 5);
+    setCurrentOperand(newValueToFixed.toString())
     setCurrentOperation(undefined);
     setPreviousOperand(undefined);
+    setResetFlag(true);
   }
 
   const onAllClearClick = () => {
@@ -35,7 +39,9 @@ const ButtonsGroup = () => {
   const onRootClick = () => {
     setCurrentOperand((num) => {
       if (num === undefined) return;
-      return Math.sqrt(+num).toString()
+      const newValue = Math.sqrt(+num)
+      const newValueToFixed = numberToFixed(newValue, 5);
+      return newValueToFixed.toString()
     })
   }
 
@@ -75,10 +81,14 @@ const ButtonsGroup = () => {
       <NumberButton digit={0} />
       <OperationButton operation={"^"} />
       <Button onClick={onEqualClick}>=</Button>
-      <Button onClick={onAllClearClick}>AC</Button>
+      <AllClearButton onClick={onAllClearClick}>AC</AllClearButton>
     </>
   )
 }
+
+const AllClearButton = styled(Button)`
+  grid-column: 1 / -1;
+`
 
 
 

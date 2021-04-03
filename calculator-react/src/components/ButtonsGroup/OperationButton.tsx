@@ -1,6 +1,7 @@
 import React from "react";
 import {OperationsParams, useCalculator} from "../../context";
 import {Button} from "../../shared/ui/Button";
+import {numberToFixed} from "../../shared/lib/numberToFixed";
 
 export const OperationButton = ({operation}: {operation: OperationsParams}) => {
 
@@ -18,8 +19,9 @@ export const OperationButton = ({operation}: {operation: OperationsParams}) => {
 
   const onOperationClickHandler = () => {
     if (currentOperation && previousOperand && currentOperand) {
-      debugger;
-      setPreviousOperand(prev => operations[currentOperation](+previousOperand, +currentOperand).toString())
+      const newValue = operations[currentOperation](+previousOperand, +currentOperand);
+      const newValueToFixed = numberToFixed(newValue, 5);
+      setPreviousOperand(newValueToFixed.toString())
       setCurrentOperation(operation);
       setCurrentOperand(undefined)
       return;

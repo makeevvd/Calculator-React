@@ -3,12 +3,15 @@ import React from "react";
 import {useCalculator} from "../../context";
 
 export const NumberButton = ({digit}: {digit: number}) => {
-  const {setCurrentOperand} = useCalculator();
+  const {setCurrentOperand, resetFlag, setResetFlag} = useCalculator();
+
   const onNumberClickHandler = () => {
     setCurrentOperand((num) => {
-        return (num !== undefined && num !== '0') ? `${num}${digit}` : digit.toString()
+
+        return (num !== undefined && num !== '0' && !resetFlag) ? `${num}${digit}` : digit.toString()
       }
     )
+    setResetFlag(false)
   }
 
   return (
