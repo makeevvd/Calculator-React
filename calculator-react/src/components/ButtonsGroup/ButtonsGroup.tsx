@@ -71,17 +71,17 @@ const ButtonsGroup = () => {
       <Button onClick={onDeleteClick}>DEL</Button>
       <OperationButton operation={"/"} />
       <Button onClick={onRootClick}>√</Button>
-      <NumberButton digit={1} />
-      <NumberButton digit={2} />
-      <NumberButton digit={3} />
-      <OperationButton operation={"*"} />
+      <NumberButton digit={9} />
+      <NumberButton digit={8} />
+      <NumberButton digit={7} />
+      <OperationButton operation={"×"} />
       <NumberButton digit={4} />
       <NumberButton digit={5} />
       <NumberButton digit={6} />
       <OperationButton operation={"+"} />
-      <NumberButton digit={7} />
-      <NumberButton digit={8} />
-      <NumberButton digit={9} />
+      <NumberButton digit={1} />
+      <NumberButton digit={2} />
+      <NumberButton digit={3} />
       <OperationButton operation={"-"} />
       <Button onClick={onPointClick}>.</Button>
       <NumberButton digit={0} />
@@ -95,7 +95,5 @@ const ButtonsGroup = () => {
 const AllClearButton = styled(Button)`
   grid-column: 1 / -1;
 `
-
-
 
 export default ButtonsGroup;

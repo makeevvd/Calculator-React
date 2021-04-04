@@ -8,7 +8,7 @@ const createOperations = <OperationsType extends Record<string, OperationFn>>(
 export const operations = createOperations({
   '+': (left, right) => left + right,
   '-': (left, right) => left - right,
-  '*': (left, right) => left * right,
+  '×': (left, right) => left * right,
   '/': (left, right) => left / right,
   '^': (left, right) => left ** right
 });
